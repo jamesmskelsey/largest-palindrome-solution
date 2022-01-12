@@ -42,7 +42,7 @@ exports.getLargestPalindrome = (N) => {
 };
 
 // input
-const N = 3;
+const N = 4;
 
 // CHALLENGE: Can you optimize the algorithm above so that works for input values N=4, N=5, N=6 in a "reasonable" amount of time?
 
