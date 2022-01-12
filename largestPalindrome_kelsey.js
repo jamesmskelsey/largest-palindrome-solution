@@ -20,10 +20,11 @@ isPalindrome = (num) => {
 
 exports.getLargestPalindrome = (N) => {
   let largestPalindrome = 0;
-
+  let low = 10 ** (N - 1);
+  let high = 10 ** N - 1;
   // iterate through range of multiplicands
-  for (let i = 10 ** (N - 1); i < 10 ** N; i++) {
-    for (let j = 10 ** N - 1; j >= i; j--) {
+  for (let i = high; i > low; i--) {
+    for (let j = low; j < i; j++) {
       let product = i * j;
       // check if the product is a palindrome
       if (product > largestPalindrome) {
