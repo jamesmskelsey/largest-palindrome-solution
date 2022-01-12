@@ -8,35 +8,29 @@
 //  0. Obtain this file from https://github.com/ankur-cp/largest-palindrome-solution
 //  1. Rename this file, substituting "yourname" with your name
 //  2. Replace "yourname" with your name in the variable below
-exports.name = "yourname";
+exports.name = "kelsey";
 //  3. Add your optimizations to the solution below
 //  4. Submit a pull request
-
 
 isPalindrome = (num) => {
   // determine if input value matches it's reversed value (i.e. check if it's a palindrome!)
   strNum = num.toString();
   return strNum === strNum.split("").reverse().join("");
-}
-
+};
 
 exports.getLargestPalindrome = (N) => {
-
   let largestPalindrome = 0;
 
   // iterate through range of multiplicands
   for (let i = 10 ** (N - 1); i < 10 ** N; i++) {
-      
-    for (let j = 10 ** (N - 1); j < 10 ** N; j++) {
-
+    for (let j = 10 ** N - 1; j >= i; j--) {
+      let product = i * j;
       // check if the product is a palindrome
-      if (isPalindrome(i * j)) {
-
-        // check if it's larger than our largest palindrome
-        if (i * j > largestPalindrome) {
-                  
+      if (product > largestPalindrome) {
+        if (isPalindrome(product)) {
+          // check if it's larger than our largest palindrome
           // update largest palindrome
-          largestPalindrome = i * j;
+          largestPalindrome = product;
         }
       }
     }
@@ -44,7 +38,7 @@ exports.getLargestPalindrome = (N) => {
 
   // return result
   return largestPalindrome;
-}
+};
 
 // input
 const N = 3;
@@ -60,6 +54,17 @@ const N = 3;
 // N=7, correct output = 99956644665999
 
 // execution
-console.time(exports.name)
-console.log("result:", exports.getLargestPalindrome(N))
-console.timeEnd(exports.name)
+console.time(exports.name);
+console.log("result: ", exports.getLargestPalindrome(N));
+console.timeEnd(exports.name);
+
+// initial result was 377.291ms
+
+// save i * j and check against that.
+// no discernible change
+
+// don't check for palindrome every time (check if number is even larger first)
+// 108.791
+
+// Reverse the j loop to go backwards (from highest to lowest)
+// 28.78ms
